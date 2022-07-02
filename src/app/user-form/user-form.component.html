@@ -1,1 +1,26 @@
-<p>user-form works!</p>
+<form class="round-container" id="user-form" [formGroup]="userForm" (onSubmit)="submitHandler()">
+  <!-- Inputs -->
+  <div class="input-container">
+    <label htmlFor="username">Username</label>
+    <input type="text" name="username" formControlName="username" />
+  </div>
+  <div class="input-container">
+    <label htmlFor="age">Age (Years)</label>
+    <input type="text" name="age" formControlName="age" />
+  </div>
+
+  <!-- Validation errors -->
+  <div class="error-msgs-container">
+    <p *ngIf="username!.errors?.['required']">* Username required</p>
+    <p *ngIf="username!.errors?.['pattern']">* Username must have 2-100 characters</p>
+    <p *ngIf="age!.errors?.['required']">* Age required</p>
+    <p *ngIf="age!.errors?.['notInt']">* Age must be an integer number</p>
+    <p *ngIf="age!.errors?.['negative']">* Age must be positive</p>
+  </div>
+  
+  <!-- Submit button -->
+  <div class="submit-btn-container">
+    <button type="submit">Add User</button>
+  </div>
+  {{userForm.value | json}}
+</form>
