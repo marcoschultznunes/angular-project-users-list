@@ -1,0 +1,26 @@
+.users-list-container {
+  background-color: #ffffff;
+  padding: var(--normal-margin);
+}
+
+/* The list */
+.users-list-container ul {
+  font-size: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+/* The items */
+.users-list-container li {
+  border: 1px solid var(--color-lightgray);
+  border-radius: var(--input-border-radius);
+  overflow-x: auto;
+  padding: 8px;
+  word-wrap: normal;
+}
+.users-list-container ul li {
+  margin-top: var(--small-margin);
+}
+.users-list-container ul li:first-child {
+  margin-top: 0;
+}

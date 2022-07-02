@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-gray: #464646;
+  --color-lightgray: #808080;
+  --color-darkgray: #1e1d1e;
+  --color-purple: rgba(76,11,86,1);
+  --color-purple-bright: rgba(114,31,128,1);
+  --color-red: #880000;
+  --big-margin: 40px;
+  --normal-margin: 20px;
+  --small-margin: 10px;
+  --tiny-margin: 8px; 
+  --input-border-radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--color-darkgray);
+  font-size: 16px;
+  padding: var(--big-margin) 25vw;
+}
+.round-container {
+  border-radius: 8px;
+  margin-bottom: var(--big-margin);
+}
+@media (max-width: 500px){
+  body{
+    padding: var(--normal-margin);
+  }
+  .round-container {
+    margin-bottom: var(--normal-margin);
+  }
+}
