@@ -19,7 +19,7 @@
   word-wrap: normal;
 }
 .users-list-container ul li {
-  margin-top: var(--small-margin);
+  margin-top: var(--small-margin) !important;
 }
 .users-list-container ul li:first-child {
   margin-top: 0;

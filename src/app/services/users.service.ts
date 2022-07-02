@@ -5,7 +5,10 @@ import IUser from '../models/User';
   providedIn: 'root'
 })
 export class UsersService {
-  users:IUser[] = [];
+  users:IUser[] = [
+    {username: "Marcola", age: 23},
+    {username: "Lol", age: 24}
+  ];
 
   addUser(username:string, age:number) {
     this.users.push({username, age});
