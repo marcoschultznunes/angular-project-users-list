@@ -2,8 +2,10 @@
   <h3 *ngIf="users.length === 0; else elseBlock">No users</h3>
 
   <ng-template #elseBlock>
+
     <ul *ngFor="let u of users">
       <li>{{u.username}} ({{u.age}} years old)</li>
     </ul>
+  
   </ng-template>
 </div>
