@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import IUser from '../models/User';
 import { UsersService } from '../services/users.service';
+import { ageValidator, usernameValidator } from '../validators/user.validators';
 
 @Component({
   selector: 'app-user-form',
@@ -10,10 +12,8 @@ import { UsersService } from '../services/users.service';
 export class UserFormComponent implements OnInit {
   constructor(private fb:FormBuilder, private _usersService:UsersService) { }
 
-  private userPattern = /^.{2,100}$/;
-
-  private usernameValidators = [Validators.required, Validators.pattern(this.userPattern)];
-  private ageValidators = [Validators.required];
+  private usernameValidators = [Validators.required, usernameValidator()];
+  private ageValidators = [Validators.required, ageValidator()];
 
   userForm = this.fb.group({
     username: ["", this.usernameValidators],
@@ -27,11 +27,24 @@ export class UserFormComponent implements OnInit {
     return this.userForm.get('age');
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   submitHandler() {
-    alert("Submit!")
+    if(this.userForm.valid){
+      const user:IUser = {
+        username: this.username?.value.trim(),
+        age: Number(this.age?.value.trim())
+      }
+  
+      this._usersService.addUser(user.username, user.age);
+
+      this.userForm.setValue({
+        username: "",
+        age: ""
+      });
+      this.userForm.markAsUntouched();
+    } else {
+      this.userForm.markAllAsTouched();
+    }
   }
 }

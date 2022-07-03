@@ -1,4 +1,4 @@
-<form class="round-container" id="user-form" [formGroup]="userForm" (onSubmit)="submitHandler()">
+<form class="round-container" id="user-form" [formGroup]="userForm" (ngSubmit)="submitHandler()">
   <!-- Inputs -->
   <div class="input-container">
     <label htmlFor="username">Username</label>
@@ -11,16 +11,19 @@
 
   <!-- Validation errors -->
   <div class="error-msgs-container">
-    <p *ngIf="username!.errors?.['required']">* Username required</p>
-    <p *ngIf="username!.errors?.['pattern']">* Username must have 2-100 characters</p>
-    <p *ngIf="age!.errors?.['required']">* Age required</p>
-    <p *ngIf="age!.errors?.['notInt']">* Age must be an integer number</p>
-    <p *ngIf="age!.errors?.['negative']">* Age must be positive</p>
+    <div *ngIf="username?.errors && username?.touched ">
+      <p *ngIf="username!.errors?.['required']">* Username required</p>
+      <p *ngIf="username!.errors?.['invalidLength']">* Username must have 2-100 characters</p>
+    </div>
+    <div *ngIf="age?.errors && age?.touched ">
+      <p *ngIf="age!.errors?.['required']">* Age required</p>
+      <p *ngIf="age!.errors?.['notInt']">* Age must be an integer number</p>
+      <p *ngIf="age!.errors?.['negative']">* Age must be positive</p>
+    </div>
   </div>
   
   <!-- Submit button -->
   <div class="submit-btn-container">
     <button type="submit">Add User</button>
   </div>
-  {{userForm.value | json}}
 </form>
